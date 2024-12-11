@@ -1,8 +1,9 @@
 import React from 'react';
-import service from '@/sevices/authService';
 import { useForm } from 'react-hook-form';
-import { Input } from './ui/input';
-import { Button } from './ui/button';
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import Logo from './Logo';
+import service from '@/services/authService';
 
 
 function  Signup () {
@@ -20,8 +21,15 @@ function  Signup () {
        
     }
     return (
-     <>
-         <form onSubmit={handleSubmit(create)}>
+
+        <div className='w-full mt-6 flex justify-center items-center'>
+        <div className="w-2/4 flex justify-center items-center">
+         <form className="space-y-5 bg-slate-100  rounded-md p-10" onSubmit={handleSubmit(create)}>
+                          
+                 <div className="w-full flex items-center justify-center">
+                 <Logo/>
+                 </div>
+
                     <Input
                      label="FullName"
                      placeholder="Enter your name"
@@ -75,14 +83,15 @@ function  Signup () {
                     })}
                     />
 
-                    <Button type="submit" className="w-full" >Create Account</Button>
+                    <Button type="submit" className="w-full bg-slate-900" >Create Account</Button>
 
 
                 </form>
 
             
         
-                </>
+                </div>
+                </div>
     )
 }
 

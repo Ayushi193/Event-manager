@@ -13,7 +13,7 @@ connectDB()
 
 app.use(cors({
     origin:process.env.CORS_URL,
-    Credential:true
+    credentials:true
 }))
 
 app.use(express.urlencoded({extended:true,limit:"16kb"}))

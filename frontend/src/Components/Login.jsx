@@ -2,6 +2,9 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
 import Logo from "./Logo";
+import service from "@/services/authService";
+
+
 
 
 
@@ -12,7 +15,11 @@ const Login=() =>{
 
         const login=async(data)=>{
           console.log(data);
-          
+          const session= await service.login(data)
+          console.log(session);
+        
+          <document className="cookie"></document>
+        
         }
 
    

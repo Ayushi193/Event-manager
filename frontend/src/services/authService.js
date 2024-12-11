@@ -19,7 +19,7 @@ export class AuthService{
           email,
           username,
           password,
-          avatar  
+          avatar
         },config)
        
         console.log(data);
@@ -29,11 +29,16 @@ export class AuthService{
 
      async login({ email, password}){
         
+        console.log(email);
         
         const config={
             headers:{
-                "Content-Type":"multipart/form-data; boundary=<calculated when request is sent>"
-            }
+                "Content-Type":"application/json"
+                
+            },
+             credentials: 'include'
+    
+            
         }
 
       const {data} = await axios.post(`${this.API_END_POINT}/users/login`,{

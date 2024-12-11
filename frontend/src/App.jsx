@@ -13,9 +13,7 @@ function App() {
      
       <Header/>
       <main>
-     
       <Outlet/>
-     
       </main>
      <Footer/>
 

@@ -157,14 +157,15 @@ return res.status(200)
 .json(
     new ApiResponse(
         200,
+         "User Logged In Sucessfully",
         {
             user:loggedInUser,
             refreshToken,
             accessToken
 
-        },
+        }
 
-        "User Logged In Sucessfully"
+       
     
     )
 

@@ -1,8 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-=======
-import service from '@/services/authService.js';
->>>>>>> d901c78fd7156e89cc898c65e69a4cd8ceb9e8db
 import { useForm } from 'react-hook-form';
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
@@ -25,7 +21,6 @@ function  Signup () {
        
     }
     return (
-<<<<<<< HEAD
 
         <div className='w-full mt-6 flex justify-center items-center'>
         <div className="w-2/4 flex justify-center items-center">
@@ -35,11 +30,6 @@ function  Signup () {
                  <Logo/>
                  </div>
 
-=======
-     <>
-     <h2>Signup</h2>
-         <form onSubmit={handleSubmit(create)}>
->>>>>>> d901c78fd7156e89cc898c65e69a4cd8ceb9e8db
                     <Input
                      label="FullName"
                      placeholder="Enter your name"

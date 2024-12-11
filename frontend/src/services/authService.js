@@ -26,6 +26,28 @@ export class AuthService{
         
         return data;
      }
+
+     async login({ email, password}){
+        
+        
+        const config={
+            headers:{
+                "Content-Type":"multipart/form-data; boundary=<calculated when request is sent>"
+            }
+        }
+
+      const {data} = await axios.post(`${this.API_END_POINT}/users/login`,{
+          
+          email,
+          
+          password,
+           
+        },config)
+       
+        console.log(data);
+        
+        return data;
+     }
    
 }
 

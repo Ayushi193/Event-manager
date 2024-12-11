@@ -1,8 +1,12 @@
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
+<<<<<<< HEAD
 import Logo from "./Logo";
 import { isValidElement } from "react";
+=======
+import login from "@/services/authLogin.js"
+>>>>>>> d901c78fd7156e89cc898c65e69a4cd8ceb9e8db
 
 
 
@@ -18,10 +22,16 @@ const Login=() =>{
    
    
     return(
+<<<<<<< HEAD
       <div className="w-full mt-6 flex justify-center items-center">
 
         <div className="w-1/4 flex justify-center items-center">
         <form className="space-y-5 bg-slate-100  rounded-md p-10" onSubmit={handleSubmit(login)}>
+=======
+        <>
+<h2>Login</h2>
+<form onSubmit={handleSubmit(login)}>
+>>>>>>> d901c78fd7156e89cc898c65e69a4cd8ceb9e8db
                     
                     
                  <div className="w-full flex items-center justify-center">

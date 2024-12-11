@@ -1,5 +1,5 @@
 import React from 'react';
-import service from '@/sevices/authService';
+import service from '@/services/authService.js';
 import { useForm } from 'react-hook-form';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
@@ -21,6 +21,7 @@ function  Signup () {
     }
     return (
      <>
+     <h2>Signup</h2>
          <form onSubmit={handleSubmit(create)}>
                     <Input
                      label="FullName"

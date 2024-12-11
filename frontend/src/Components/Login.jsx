@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
+import login from "@/services/authLogin.js"
 
 
 
@@ -18,7 +19,7 @@ const Login=() =>{
    
     return(
         <>
-
+<h2>Login</h2>
 <form onSubmit={handleSubmit(login)}>
                     
 

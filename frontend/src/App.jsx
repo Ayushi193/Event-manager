@@ -4,12 +4,14 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Login from "./Components/Login"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Signup from './Components/Signup'
 function App() {
   
 
   return (
     <>
     <Login/>
+    
      </>
   )
 }

@@ -3,6 +3,7 @@ import Header from './Components/Header'
 import Footer from './Components/Footer'
 
 import { Outlet } from "react-router-dom"
+import ProblemsPage from './Components/ProblemsPage'
 
 function App() {
   
@@ -16,6 +17,8 @@ function App() {
       <Outlet/>
       </main>
      <Footer/>
+
+     {/* <ProblemsPage/> */}
 
     </div>
      

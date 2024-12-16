@@ -11,7 +11,7 @@ function  Header () {
         },
         {
             name:"Explore",
-            slug:"/"
+            slug:"/explore"
         },
         {
             name:"Sign In",

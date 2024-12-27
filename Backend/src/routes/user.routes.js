@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { logOutuser, loginUser, registerUser,getUserChannelProfile } from "../controllers/user.controller.js";
+import { logOutuser, loginUser, registerUser,getUserChannelProfile, getCureentUser } from "../controllers/user.controller.js";
 import { upload } from "../midllewares/multer.middleware.js";
 import { verifyJwt } from "../midllewares/auth.middleware.js";
 
@@ -20,7 +20,8 @@ router.route("/register").post(
     ]),
     registerUser)
 
- router.route("/login").post(loginUser)   
+ router.route("/login").post(loginUser)
+ router.route("/getcurrentuser").get(verifyJwt,getCureentUser) 
 
  router.route("/logout").post(verifyJwt,logOutuser)
  router.route("/filter").post(verifyJwt,getUserChannelProfile)

@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Code,BookText,GithubIcon } from 'lucide-react';
 import Description from './Description';
+import { problems } from './problems';
+import { useParams } from 'react-router-dom';
 
 
 function  ProblemsPage () {
+  const {id}=useParams()
+  const [description,setDescription]=useState()
+  
+  useEffect(()=>{
+     console.log(id);
+     problems.map((p)=>{
+      console.log(p.id);
+      
+      if(p.id===id){
+        setDescription(p.description)
+      }
+     })
+    console.log(description);
+    
+     
+  },[])
+   
     return (
         
         <div className='w-full h-screen bg-slate-800 flex'>
@@ -12,7 +31,7 @@ function  ProblemsPage () {
          <div className='w-full bg-slate-800 h-9 flex gap-1 p-2 rounded-md'><BookText/>Description</div>
          <div className='w-full h-[900px]'>
          <ScrollArea className="h-[900px] w-full overflow-y-auto ">
-              <Description/>
+             {description}
             </ScrollArea>
          </div>
         

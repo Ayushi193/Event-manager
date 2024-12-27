@@ -6,6 +6,7 @@ import Logo from './Logo';
 import service from '@/services/authService';
 
 
+
 function  Signup () {
     const {register,handleSubmit}=useForm()
     const create=async(data)=>{

@@ -176,7 +176,9 @@ return res.status(200)
 })
 
 const logOutuser=asynchandler(async(req,res)=>{
-
+ 
+    console.log(req.header);
+    
    
 
   const hola= await User.findByIdAndUpdate(req.user._id,
@@ -292,12 +294,15 @@ const changeCurrentPassword=asynchandler(async(req,res)=>{
 })
 
 const getCureentUser=asynchandler(async(req,res)=>{
+    
+    
  return res
  .status(200)
  .json(new ApiResponse (
     200,
-    req.user,
-    "User fetched sucessfully"
+    "User fetched sucessfully",
+    req.user
+    
  ))
 })
 

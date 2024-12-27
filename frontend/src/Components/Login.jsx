@@ -3,23 +3,29 @@ import { Button } from "@/components/ui/button"
 import { useForm } from "react-hook-form";
 import Logo from "./Logo";
 import service from "@/services/authService";
-
-
-
-
+import { useDispatch } from "react-redux";
+import { login as authLogin } from "@/store/authSlice";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const Login=() =>{
   
         const {handleSubmit,register}=useForm()
-
+        const navigate=useNavigate()
+        const dispatch=useDispatch()
         const login=async(data)=>{
           console.log(data);
           const session= await service.login(data)
-          console.log(session);
-        
-          <document className="cookie"></document>
-        
+
+          if(session){
+           navigate("/")
+            
+          }
+
+         localStorage.setItem("userData",JSON.stringify(session))
+         dispatch(authLogin({userData:session}))
+         
+ 
         }
 
    
@@ -67,6 +73,16 @@ const Login=() =>{
                  
 
                <Button type="submit" className="w-full bg-slate-900" >Login</Button>
+
+               <p className="mt-2 text-center text-base text-black/60">
+                        Don&apos;t have any account?&nbsp;
+                        <Link
+                            to="/signup"
+                            className="font-medium text-primary transition-all duration-200 hover:underline"
+                        >
+                            Sign Up
+                        </Link>
+                </p>
 
               </form>
         </div>

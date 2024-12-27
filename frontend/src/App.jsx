@@ -4,8 +4,21 @@ import Footer from './Components/Footer'
 
 import { Outlet } from "react-router-dom"
 import ProblemsPage from './Components/ProblemsPage'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { login } from './store/authSlice'
+import Modal from './Components/Modal'
+import Profile from './Components/Profile'
 
 function App() {
+  const dispatch=useDispatch() 
+  
+  useEffect(()=>{
+   const userData=JSON.parse(localStorage.getItem("userData"))
+    if(userData){
+      dispatch(login({userData:userData}))
+    }
+  },[])
   
 
   return (
@@ -21,8 +34,6 @@ function App() {
      {/* <ProblemsPage/> */}
 
     </div>
-     
-  
   )
 }
 

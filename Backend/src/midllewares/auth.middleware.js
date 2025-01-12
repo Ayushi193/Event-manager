@@ -1,14 +1,14 @@
+import { Admin } from "../models/admin.model.js";
 import { User } from "../models/user.model.js";
 import { API_ERROR } from "../utils/ApiError.js";
 import { asynchandler } from "../utils/asynchandler.js";
 import jwt from "jsonwebtoken"
 
- export const verifyJwt=asynchandler(async(req,res,next)=>{
+const verifyJwt=asynchandler(async(req,res,next)=>{
 
 
     try {
-        
-        
+ 
      const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
      console.log(token)
 
@@ -38,3 +38,46 @@ import jwt from "jsonwebtoken"
 
 
  })
+
+ const verifyJwtAdmin=asynchandler(async(req,res,next)=>{
+
+
+    try {
+ 
+     const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
+     console.log(token)
+
+     if(!token){
+        throw new API_ERROR(401,"Unauthorized Request")
+     }
+      console.log("hii");
+      
+     const decodedToken=jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
+     console.log("hola",decodedToken);
+     
+
+    const admin= await Admin.findById(decodedToken?._id)
+
+    if(!admin){
+        throw new API_ERROR(401,"Invalid Acesss Token")
+    }
+
+    req.admin=admin
+    next()
+
+
+
+        
+    } catch (error) {
+        throw new API_ERROR(401,error?.message || "Invalid user Token")
+        
+    }
+
+
+
+ })
+
+ export {
+    verifyJwt,
+    verifyJwtAdmin
+ }

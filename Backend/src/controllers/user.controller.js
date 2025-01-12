@@ -1,12 +1,10 @@
 import { asynchandler } from "../utils/asynchandler.js";
 import { API_ERROR } from "../utils/ApiError.js";
 import { User} from "../models/user.model.js"
-import multer from "multer";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import jwt from "jsonwebtoken"
-import mongoose from "mongoose";
-import { application } from "express";
+
 
 
 const registerUser = asynchandler( async (req, res) => {

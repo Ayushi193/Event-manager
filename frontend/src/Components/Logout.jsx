@@ -4,9 +4,11 @@ import axios from 'axios';
 import {logout as authLogout} from "../store/authSlice"
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function  Logout () {
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const user=useSelector((state)=>state.auth.userData)
 
     const logout=async()=>{
@@ -24,6 +26,7 @@ function  Logout () {
     //     console.log(res);
         dispatch(authLogout())
         localStorage.removeItem("userData")
+        navigate("/home")
        
        
     }

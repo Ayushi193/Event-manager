@@ -41,24 +41,16 @@ const userSchema=new Schema(
             type:String,
             required:true
         },
+        college:{
+            required:true,
+            type:String
+        }
+        ,
 
         refreshToken:{
             type:String
 
         },
-
-        watchHistory: [
-            {
-                type:Schema.Types.ObjectId,
-                ref:"Video"
-            }
-        ],
-
-
-    
-         
-
-
 
     },
     {

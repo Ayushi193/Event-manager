@@ -5,7 +5,7 @@ export class AuthService{
      API_END_POINT="http://localhost:8000/api/v1"
 
    
-     async createAccount({fullName, email, username, password,avatar}){
+     async createAccount({fullName, email,college, username, password,avatar}){
        try {
         console.log(fullName);
         const config={
@@ -17,6 +17,7 @@ export class AuthService{
           fullName,
           email,
           username,
+          college,
           password,
           avatar
         },config)

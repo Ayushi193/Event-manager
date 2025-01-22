@@ -26,7 +26,7 @@ function  Logout () {
     //     console.log(res);
         dispatch(authLogout())
         localStorage.removeItem("userData")
-        navigate("/home")
+        navigate("/")
        
        
     }

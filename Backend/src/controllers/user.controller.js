@@ -19,11 +19,12 @@ const registerUser = asynchandler( async (req, res) => {
     // return res
 
 
-    const {fullName, email, username, password } = req.body
+    const {fullName, email,college, username, password } = req.body
     //console.log("email: ", email);
-
+     
+     
     if (
-        [fullName, email, username, password].some((field) => field?.trim() === "")
+        [fullName, email,college, username, password].some((field) => field?.trim() === "")
     ) {
         throw new API_ERROR(400, "All fields are required")
     }
@@ -50,7 +51,7 @@ const registerUser = asynchandler( async (req, res) => {
     if (!avatarLocalPath) {
         throw new API_ERROR(400, "Avatar file is required")
     }
-       console.log(avatarLocalPath);
+    
        
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImage = await uploadOnCloudinary(coverImageLocalPath)
@@ -66,6 +67,7 @@ const registerUser = asynchandler( async (req, res) => {
         coverImage: coverImage?.url || "",
         email, 
         password,
+        college,
         username: username.toLowerCase()
     })
 
@@ -175,7 +177,7 @@ return res.status(200)
 
 const logOutuser=asynchandler(async(req,res)=>{
  
-    console.log(req.header);
+    
     
    
 

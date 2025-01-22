@@ -38,6 +38,10 @@ const router=createBrowserRouter([
       {
         path:"/hackthons/:id",
         element:<ProblemsPage/>
+      },
+      {
+        path:"/options",
+        element:<Signup/>
       }
       
     ]
@@ -45,9 +49,9 @@ const router=createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  
     <Provider store={store}>
    <RouterProvider router={router}/>
    </Provider>
-  </StrictMode>,
+  
 )

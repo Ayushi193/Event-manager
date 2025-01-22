@@ -20,6 +20,10 @@ const AdminSchema=new Schema({
         type:String,
         required:true
     },
+    college:{
+        required:true,
+        type:String
+    }
 },
 {
     timestamps:true

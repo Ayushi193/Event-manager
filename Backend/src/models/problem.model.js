@@ -16,6 +16,11 @@ const problemSchema=new Schema({
     status:{
         required:true,
         type:Boolean
+    },
+    college:{
+        
+        type:Schema.Types.ObjectId,
+        ref:"Admin"
     }
     
 })

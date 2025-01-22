@@ -2,27 +2,51 @@ import React, { useEffect, useState } from 'react';
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Code,BookText,GithubIcon } from 'lucide-react';
 import Description from './Description';
-import { problems } from './problems';
+
 import { useParams } from 'react-router-dom';
+import problemservice from '@/services/problemService';
+import { useSelector } from 'react-redux';
+
 
 
 function  ProblemsPage () {
   const {id}=useParams()
+  const userData=JSON.parse(localStorage.getItem("userData"))
   const [description,setDescription]=useState()
-  
+   const [problems,setProblems]=useState([])
+
+  const fetchProblems=async()=>{
+    const res= await problemservice.getProblems(userData.data.user.college)
+    
+     setProblems(res.data)
+     console.log(problems);
+     
+     
+    
+    
+
+  }
   useEffect(()=>{
-     console.log(id);
-     problems.map((p)=>{
-      console.log(p.id);
+    fetchProblems()
+   
+ },[])
+
+  useEffect(()=>{
+   
+   
+    problems.map((p)=>{
       
-      if(p.id===id){
+      
+      if(p._id===id){
         setDescription(p.description)
       }
      })
-    console.log(description);
-    
-     
-  },[])
+  },[problems])
+  
+  
+
+
+
    
     return (
         

@@ -1,26 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import Logo from './Logo';
 import service from '@/services/authService';
+import Dropdown from './Dropdown';
+import { colleges } from './colleges';
 
 
 
 function  Signup () {
     const {register,handleSubmit}=useForm()
+    const [college,setCollege]=useState("")
     const create=async(data)=>{
+        console.log(college);
+        
        console.log(data);
      const res= await service.createAccount({
         fullName:data.name,
         username:data.username,
         email:data.email,
+        college:college,
         password:data.password,
         avatar:data.avatar?.[0]
        })
        console.log(res);
        
     }
+
+    const handleSelect = (selectedOption) => {
+        console.log("Selected College:", selectedOption);
+        
+        
+      };
     return (
 
         <div className='w-full mt-6 flex justify-center items-center'>
@@ -84,7 +96,14 @@ function  Signup () {
                     })}
                     />
 
+                   <div className="p-6">
+                     <h1 className="text-2xl text-black font-bold mb-4">Engineering Colleges</h1>
+                        <Dropdown options={colleges} onSelect={handleSelect} />
+                    </div>
+
                     <Button type="submit" className="w-full bg-slate-900" >Create Account</Button>
+
+
 
 
                 </form>

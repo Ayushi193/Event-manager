@@ -4,11 +4,11 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { Admin } from "../models/admin.model.js";
 
 const registerAdmin=asynchandler(async(req,res)=>{
-    const {fullName, email, password } = req.body
+    const {fullName, email, password ,college} = req.body
     //console.log("email: ", email);
 
     if (
-        [fullName, email, password].some((field) => field?.trim() === "")
+        [fullName,college, email, password].some((field) => field?.trim() === "")
     ) {
         throw new API_ERROR(400, "All fields are required")
     }
@@ -22,7 +22,8 @@ const registerAdmin=asynchandler(async(req,res)=>{
   const admin = await Admin.create({
     fullName,
     email,
-    password
+    password,
+    college
    })
 
    if(!admin){

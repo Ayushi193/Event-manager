@@ -2,23 +2,32 @@ import { asynchandler } from "../utils/asynchandler.js";
 import { API_ERROR } from "../utils/ApiError.js";
 import { Problem } from "../models/problem.model.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { logOutAdmin } from "./admin.controllers.js";
+import { Admin } from "../models/admin.model.js";
 
 
 const problemstatement=asynchandler(async(req,res)=>{
 
    const {title,description,time,status}=req.body
+ 
+   
+   const college=req.admin
 
-   if([title,description,time,status].some((field)=>field?.trim()==="")){
+   if([title,description,status].some((field)=>field?.trim()==="")){
       throw new API_ERROR(400,"enter all fields")
 
    }
 
-   const problems=await Problem.create({
+   const problemstatement=await Problem.create({
       title,
       description,
       time,
-      status
+      status,
+      college
    })
+
+  const problems= await Problem.findOne({_id:problemstatement._id})
+  .populate("college","-password")
 
    if(!problems){
       throw new API_ERROR(500,"problems statement not created")
@@ -30,15 +39,43 @@ const problemstatement=asynchandler(async(req,res)=>{
 })
 
 const getProblems=asynchandler(async(req,res)=>{
-    
-  const activeproblems= await Problem.aggregate([
+      const {collegeName}=req.body
+     
+      
+  var activeproblems= await Problem.aggregate([
+        {
+          $lookup: {
+            from: "admins",
+            localField: "college",
+            foreignField: "_id",
+            as: "s",
+          }
+         },
+      
       {
-         $match:{
-            status:true
+         $addFields: {
+            college:{
+              $first:"$s"
+            }
          }
-      }
+       },
+       {
+         $match: {
+          "college.college": collegeName
+         }
+       }
+     
    ])
 
+  
+ activeproblems=await Admin.populate(activeproblems,{
+   path:"college",
+   select:"college"
+ })
+
+   
+
+  
    if(!activeproblems){
       throw new API_ERROR(500,"Failed to fetch Problem")
    }

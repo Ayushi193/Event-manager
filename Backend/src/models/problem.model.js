@@ -11,7 +11,7 @@ const problemSchema=new Schema({
     },
     time :{
        required:true,
-        type:String
+        type:Number
     },
     status:{
         required:true,

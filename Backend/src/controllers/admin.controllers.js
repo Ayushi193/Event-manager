@@ -77,7 +77,7 @@ const loginAdmin=asynchandler(async(req,res)=>{
        email
     })
     
-    console.log(admin);
+     
     
     if(!admin){
         throw new API_ERROR(404,"User does not exist")
@@ -107,7 +107,7 @@ const loginAdmin=asynchandler(async(req,res)=>{
     .json(
         new ApiResponse(
             200,
-             "User Logged In Sucessfully",
+             "Admin Logged In Sucessfully",
             {
                 admin:loggedInUser,
                 refreshToken,

@@ -3,6 +3,7 @@ import dotenv from "dotenv"
 import connectDB from "./src/db/connectDB.js";
 import cors from "cors"
 import cookieParser from "cookie-parser";
+import path from "path"
 const app=express();
 dotenv.config({
     path:"./.env"
@@ -41,6 +42,25 @@ app.use("/api/v1/admin",adminRouter)
 app.listen(process.env.PORT || 8000,()=>{
     console.log(`server is listening to the port http://localhost:${process.env.PORT}`)
 })
-app.get("/",(req,res)=>{
-    res.send("Server is ready")
-})
+// app.get("/",(req,res)=>{
+//     res.send("Server is ready")
+// })
+
+// ---------Deployment Code---------
+const _dirname1=path.resolve();
+if(process.env.NODE_ENV==="development"){
+  console.log(process.env.NODE_ENV);
+  
+  app.use(express.static(path.join(_dirname1,"frontend/dist")))
+  app.get("*",(req,res)=>{
+    res.sendFile(path.resolve(_dirname1,"frontend","dist","index.html"))
+  })
+
+}else{
+
+app.get("/", (req, res) => {
+  res.send("server is ready");
+});
+
+}
+//------------------------------------------------

@@ -10,7 +10,7 @@ const verifyJwt=asynchandler(async(req,res,next)=>{
     try {
  
      const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
-     console.log(token)
+     
 
      if(!token){
         throw new API_ERROR(401,"Unauthorized Request")
@@ -45,15 +45,15 @@ const verifyJwt=asynchandler(async(req,res,next)=>{
     try {
  
      const token=req.cookies?.accessToken || req.header("Authorization")?.replace("Bearer ","");
-     console.log(token)
+     
 
      if(!token){
         throw new API_ERROR(401,"Unauthorized Request")
      }
-      console.log("hii");
+     
       
      const decodedToken=jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
-     console.log("hola",decodedToken);
+     
      
 
     const admin= await Admin.findById(decodedToken?._id)
